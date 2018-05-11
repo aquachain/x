@@ -17,7 +17,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 
@@ -53,7 +52,7 @@ func init() {
 			Usage: "Interface to serve HTTP. Use :8080 for all interfaces",
 		},
 		cli.Uint64Flag{
-			Value: 0,
+			Value: 25000,
 			Name:  "from",
 			Usage: "begin at block",
 		},
@@ -70,21 +69,16 @@ func switcher(ctx *cli.Context) error {
 	if err := debug.Setup(ctx); err != nil {
 		return err
 	}
-	if argc := ctx.NArg(); argc == 0 {
-		return fmt.Errorf("command not specified: timing diff rich")
-	}
-	arg1 := ctx.Args()[0]
-	switch arg1 {
-	case "serve":
-		return Serve(ctx)
-	// case "timing":
-	// 	return drawchart_timing(ctx)
-	// case "diff":
-	// 	return drawchart_diff(ctx)
-	// case "rich", "richlist":
-	// 	return richlist(ctx)
-	default:
-		return fmt.Errorf("command not found")
-	}
+	return Serve(ctx)
+	// if argc := ctx.NArg(); argc == 0 {
+	// 	return fmt.Errorf("command not found")
+	// }
+	// arg1 := ctx.Args()[0]
+	// switch arg1 {
+	// case "serve":
+	// 	return Serve(ctx)
+	// default:
+	// 	return fmt.Errorf("command not found")
+	// }
 
 }

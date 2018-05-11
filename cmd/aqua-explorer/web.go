@@ -5,8 +5,18 @@ import (
 	"html/template"
 	"net/http"
 
+	"github.com/aquachain/x/internal/bindat"
+	"github.com/aquanetwork/aquachain/common/log"
+
 	"gopkg.in/urfave/cli.v1"
 )
+
+func staticHandle(s string) http.HandlerFunc {
+	img, _ := bindat.Asset(s)
+	return func(w http.ResponseWriter, r *http.Request) {
+		w.Write(img)
+	}
+}
 
 func Serve(ctx *cli.Context) error {
 	addr := "localhost:8080"
@@ -17,9 +27,11 @@ func Serve(ctx *cli.Context) error {
 
 	http.HandleFunc("/", http.HandlerFunc(indexhandler))
 	http.HandleFunc("/diff.png", diffchart.HandleChart)
+	http.HandleFunc("/aquachain.png", staticHandle("aquachain.png"))
 	// http.HandleFunc("/txblock.png", mustgetchart_txblock(ctx).HandleChart)
 	http.HandleFunc("/distribution.png", distribchart.HandleChart)
 	http.HandleFunc("/timing.png", timingchart.HandleChart)
+	log.Info("Starting HTTP server", "addr", addr)
 	return http.ListenAndServe(addr, http.DefaultServeMux)
 
 }
@@ -29,7 +41,20 @@ img {
     max-width: 100%;
     height: auto;
 }
+.glogo {
+  float: right;
+  clear: none;
+}
+.tlogo {
+  float: left;
+  clear: none;
+}
+#id {
+  width: 100px;
+  height: 100px;
+}
 #wr {
+  clear: both;
   width: 100%;
   height: 100%;
 }
@@ -52,7 +77,11 @@ var IndexHTML = `
 <style> ` + coolstyle + ` </style>
 </head>
 <body>
-<pre>{{.Logo}}</pre>
+<div>
+<div class="tlogo"><pre>{{.Logo}}</pre></div>
+<div class="glogo"><img style="max-width: 100px; height: auto;" src="aquachain.png"></div>
+</div>
+<br>
 <div id="wr">
 {{range .Images}}
 <img src="{{.}}"><br>

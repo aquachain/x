@@ -244,20 +244,24 @@ func Ch(chart *chart.Chart) *Chart {
 	return &Chart{chart: chart}
 }
 
-func getcharts_difftiming(ctx *cli.Context) (*Chart, *Chart) {
+func GenerateCharts(ctx *cli.Context) (diffchart, timechart, distchart *Chart) {
 	log.Info("Reading blockchain")
 	t1 := time.Now()
 	numbers, diffs, times, err := analyzeDifficulty(ctx)
 	if err != nil {
 		fmt.Println(err)
-		return nil, nil
+		return nil, nil, nil
 	}
 	log.Info("Generating diff.png", "elapsed", time.Now().Sub(t1))
 	t2 := time.Now()
-	diffchart := newChart(numbers, diffs, "Difficulty", "mining difficulty")
+	diffchart = Ch(newChart(numbers, diffs, "Difficulty", "mining difficulty"))
 
 	log.Info("Generating timing.png", "elapsed", time.Now().Sub(t2))
-	timechart := newChart(numbers, times, "Timing", "blocktimes (seconds)")
-	log.Info("Two charts done", "total", time.Now().Sub(t1))
-	return Ch(diffchart), Ch(timechart)
+	t3 := time.Now()
+	timechart = Ch(newChart(numbers, times, "Timing", "blocktimes (seconds)"))
+
+	log.Info("Generating distribution.png", "elapsed", time.Now().Sub(t3))
+	distchart = Ch(analyzeRichlist(ctx).chart)
+	log.Info("Three charts done", "total", time.Now().Sub(t1))
+	return
 }

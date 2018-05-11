@@ -24,11 +24,12 @@ func Serve(ctx *cli.Context) error {
 		addr = a
 	}
 	diffchart, timingchart, distribchart := GenerateCharts(ctx)
-
+	if diffchart == nil {
+		return fmt.Errorf("Error")
+	}
 	http.HandleFunc("/", http.HandlerFunc(indexhandler))
 	http.HandleFunc("/diff.png", diffchart.HandleChart)
 	http.HandleFunc("/aquachain.png", staticHandle("aquachain.png"))
-	// http.HandleFunc("/txblock.png", mustgetchart_txblock(ctx).HandleChart)
 	http.HandleFunc("/distribution.png", distribchart.HandleChart)
 	http.HandleFunc("/timing.png", timingchart.HandleChart)
 	log.Info("Starting HTTP server", "addr", addr)

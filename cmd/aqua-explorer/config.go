@@ -17,14 +17,13 @@
 package main
 
 import (
-	cli "gopkg.in/urfave/cli.v1"
-
 	"github.com/aquachain/x/utils"
 	"github.com/aquanetwork/aquachain/aqua"
 	"github.com/aquanetwork/aquachain/node"
 	"github.com/aquanetwork/aquachain/opt/dashboard"
 	whisper "github.com/aquanetwork/aquachain/opt/whisper/whisperv6"
 	"github.com/aquanetwork/aquachain/params"
+	"gopkg.in/urfave/cli.v1"
 )
 
 type aquaConfig struct {

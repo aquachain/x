@@ -1,5 +1,5 @@
-// Copyright 2017 The aquachain Authors
-// This file is part of aquachain.
+// Copyright 2018 The aquachain Authors
+// This file is part of the aquachain/x project.
 //
 // aquachain is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by

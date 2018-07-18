@@ -18,11 +18,11 @@ package main
 
 import (
 	"github.com/aquachain/x/utils"
-	"github.com/aquanetwork/aquachain/aqua"
-	"github.com/aquanetwork/aquachain/node"
-	"github.com/aquanetwork/aquachain/opt/dashboard"
-	whisper "github.com/aquanetwork/aquachain/opt/whisper/whisperv6"
-	"github.com/aquanetwork/aquachain/params"
+	"gitlab.com/aquachain/aquachain/aqua"
+	"gitlab.com/aquachain/aquachain/node"
+	"gitlab.com/aquachain/aquachain/opt/dashboard"
+	whisper "gitlab.com/aquachain/aquachain/opt/whisper/whisperv6"
+	"gitlab.com/aquachain/aquachain/params"
 	"gopkg.in/urfave/cli.v1"
 )
 

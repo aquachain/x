@@ -26,12 +26,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/aquanetwork/aquachain/common/log"
-	"github.com/aquanetwork/aquachain/core/state"
-	"github.com/aquanetwork/aquachain/core/types"
-	"github.com/aquanetwork/aquachain/opt/aquaclient"
-	"github.com/aquanetwork/aquachain/params"
-	"github.com/aquanetwork/aquachain/rpc"
+	"gitlab.com/aquachain/aquachain/common/log"
+	"gitlab.com/aquachain/aquachain/core/state"
+	"gitlab.com/aquachain/aquachain/core/types"
+	"gitlab.com/aquachain/aquachain/opt/aquaclient"
+	"gitlab.com/aquachain/aquachain/params"
+	"gitlab.com/aquachain/aquachain/rpc"
 
 	chart "github.com/wcharczuk/go-chart"
 	"gopkg.in/urfave/cli.v1"

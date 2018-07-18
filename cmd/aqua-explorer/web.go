@@ -22,7 +22,7 @@ import (
 	"net/http"
 
 	"github.com/aquachain/x/internal/bindat"
-	"github.com/aquanetwork/aquachain/common/log"
+	"gitlab.com/aquachain/aquachain/common/log"
 
 	"gopkg.in/urfave/cli.v1"
 )

@@ -24,11 +24,11 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/aquanetwork/aquachain/common/log"
-	"github.com/aquanetwork/aquachain/common/log/term"
-	"github.com/aquanetwork/aquachain/common/metrics"
-	"github.com/aquanetwork/aquachain/common/metrics/exp"
 	colorable "github.com/mattn/go-colorable"
+	"gitlab.com/aquachain/aquachain/common/log"
+	"gitlab.com/aquachain/aquachain/common/log/term"
+	"gitlab.com/aquachain/aquachain/common/metrics"
+	"gitlab.com/aquachain/aquachain/common/metrics/exp"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -109,7 +109,12 @@ func Setup(ctx *cli.Context) error {
 	// logging
 	log.PrintOrigins(ctx.GlobalBool(debugFlag.Name))
 	glogger.Verbosity(log.Lvl(ctx.GlobalInt(verbosityFlag.Name)))
-	glogger.Vmodule(ctx.GlobalString(vmoduleFlag.Name))
+
+	if ctx.GlobalString(vmoduleFlag.Name) == "good" {
+		glogger.Vmodule("p2p/discover=3,aqua/*=9,consensus/*=9,core/*=9,rpc/*=9,node/*=9,opt/*=9")
+	} else {
+		glogger.Vmodule(ctx.GlobalString(vmoduleFlag.Name))
+	}
 	glogger.BacktraceAt(ctx.GlobalString(backtraceAtFlag.Name))
 	log.Root().SetHandler(glogger)
 

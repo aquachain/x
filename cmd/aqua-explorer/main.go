@@ -22,7 +22,7 @@ import (
 
 	"github.com/aquachain/x/internal/debug"
 	"github.com/aquachain/x/utils"
-	"github.com/aquanetwork/aquachain/common/log"
+	"gitlab.com/aquachain/aquachain/common/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

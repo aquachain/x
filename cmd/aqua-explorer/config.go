@@ -20,25 +20,21 @@ import (
 	"github.com/aquachain/x/utils"
 	"gitlab.com/aquachain/aquachain/aqua"
 	"gitlab.com/aquachain/aquachain/node"
-	"gitlab.com/aquachain/aquachain/opt/dashboard"
-	whisper "gitlab.com/aquachain/aquachain/opt/whisper/whisperv6"
 	"gitlab.com/aquachain/aquachain/params"
 	"gopkg.in/urfave/cli.v1"
 )
 
 type aquaConfig struct {
 	Aqua      aqua.Config
-	Shh       whisper.Config
 	Node      node.Config
-	Dashboard dashboard.Config
 }
 
 func defaultNodeConfig() node.Config {
 	cfg := node.DefaultConfig
 	cfg.Name = "aquachain-x"
 	cfg.Version = params.VersionWithCommit(gitCommit)
-	cfg.HTTPModules = append(cfg.HTTPModules, "aqua", "shh")
-	cfg.WSModules = append(cfg.WSModules, "aqua", "shh")
+	cfg.HTTPModules = append(cfg.HTTPModules, "aqua")
+	cfg.WSModules = append(cfg.WSModules, "aqua")
 	cfg.IPCPath = "aquachain.ipc"
 	return cfg
 }
@@ -47,9 +43,7 @@ func makeConfigNode(ctx *cli.Context) (*node.Node, aquaConfig) {
 	// Load defaults.
 	cfg := aquaConfig{
 		Aqua:      aqua.DefaultConfig,
-		Shh:       whisper.DefaultConfig,
 		Node:      defaultNodeConfig(),
-		Dashboard: dashboard.DefaultConfig,
 	}
 
 	// Apply flags.
@@ -59,9 +53,6 @@ func makeConfigNode(ctx *cli.Context) (*node.Node, aquaConfig) {
 		utils.Fatalf("Failed to create the protocol stack: %v", err)
 	}
 	utils.SetAquaConfig(ctx, stack, &cfg.Aqua)
-	utils.SetShhConfig(ctx, stack, &cfg.Shh)
-	utils.SetDashboardConfig(ctx, &cfg.Dashboard)
-
 	return stack, cfg
 }
 

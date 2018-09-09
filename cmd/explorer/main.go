@@ -20,8 +20,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/aquachain/x/internal/debug"
-	"github.com/aquachain/x/utils"
+	"gitlab.com/aquachain/x/internal/debug"
+	"gitlab.com/aquachain/x/utils"
 	"gitlab.com/aquachain/aquachain/common/log"
 	"gopkg.in/urfave/cli.v1"
 )
@@ -69,7 +69,7 @@ func switcher(ctx *cli.Context) error {
 	if err := debug.Setup(ctx); err != nil {
 		return err
 	}
-	return Serve(ctx)
+	return NewExplorer(ctx).Serve()
 	// if argc := ctx.NArg(); argc == 0 {
 	// 	return fmt.Errorf("command not found")
 	// }

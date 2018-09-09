@@ -17,16 +17,16 @@
 package main
 
 import (
-	"github.com/aquachain/x/utils"
 	"gitlab.com/aquachain/aquachain/aqua"
 	"gitlab.com/aquachain/aquachain/node"
 	"gitlab.com/aquachain/aquachain/params"
+	"gitlab.com/aquachain/x/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 
 type aquaConfig struct {
-	Aqua      aqua.Config
-	Node      node.Config
+	Aqua aqua.Config
+	Node node.Config
 }
 
 func defaultNodeConfig() node.Config {
@@ -42,8 +42,8 @@ func defaultNodeConfig() node.Config {
 func makeConfigNode(ctx *cli.Context) (*node.Node, aquaConfig) {
 	// Load defaults.
 	cfg := aquaConfig{
-		Aqua:      aqua.DefaultConfig,
-		Node:      defaultNodeConfig(),
+		Aqua: aqua.DefaultConfig,
+		Node: defaultNodeConfig(),
 	}
 
 	// Apply flags.

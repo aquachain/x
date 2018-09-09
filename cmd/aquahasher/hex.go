@@ -22,7 +22,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/aquachain/x/utils"
+	"gitlab.com/aquachain/x/utils"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

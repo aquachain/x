@@ -30,7 +30,7 @@ import (
 	"gitlab.com/aquachain/aquachain/common/log"
 	"gitlab.com/aquachain/aquachain/core"
 	"gitlab.com/aquachain/aquachain/core/types"
-	"github.com/aquachain/x/internal/debug"
+	"gitlab.com/aquachain/x/internal/debug"
 	"gitlab.com/aquachain/aquachain/node"
 	"gitlab.com/aquachain/aquachain/rlp"
 )

@@ -1,0 +1,3 @@
+all:
+	GOBIN=${PWD} go install -tags 'osusergo netgo' -ldflags '-w -s -extldflags -static' ./...
+

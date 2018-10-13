@@ -11,7 +11,7 @@ import (
 
 	"github.com/aerth/tgun"
 	"gitlab.com/aquachain/aquachain/opt/aquaclient"
-	"gitlab.com/aquachain/aquachain/rpc"
+	"gitlab.com/aquachain/aquachain/rpc/rpcclient"
 )
 
 const TimeoutDuration = 10 * time.Second

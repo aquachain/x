@@ -54,6 +54,9 @@ func (h *Handler) HomePage(w http.ResponseWriter, r *http.Request) {
 type PoolStats struct {
 	Hashrate    int64 `json:'hashrate'`
 	MinersTotal int64 `json:'minersTotal'`
+	Nodes       struct {
+		Height uint64 `json:'height'`
+	} `json:'nodes'`
 }
 
 func (h *Handler) StatusMiners(w http.ResponseWriter, r *http.Request) {
@@ -91,7 +94,7 @@ func (h *Handler) StatusMiners(w http.ResponseWriter, r *http.Request) {
 				log.Println(poolapi, err)
 				return
 			}
-			line := fmt.Sprintf("%3v miners (%8v h/s) %s\n", poolStatus.MinersTotal, poolStatus.Hashrate, strings.TrimSuffix(poolapi, "/api/"))
+			line := fmt.Sprintf("%3v miners (%8v h/s) (height %v) %s\n", poolStatus.MinersTotal, poolStatus.Hashrate, poolStatus.Nodes.Height, strings.TrimSuffix(poolapi, "/api/"))
 			buf.Write([]byte(line))
 			w.Write([]byte(line))
 			return
